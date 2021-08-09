@@ -1,0 +1,114 @@
+<%layout('/layouts/boilerplate')%>
+<div class="row">
+    <div class="col-6">
+        <div class="card-mb-3">
+            <img src="/imgs/servImage.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Service Name: <%= service.name %></h5>
+              <p class="card-text"><%= service.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">PRICE: <%= service.price %>€</li>
+              <li class="list-group-item">Created by <%= service.author.username%></li>
+              <li class="list-group-item">A third item</li>
+            </ul>
+            <!-- <div class="card-body">
+                <a href="/services/<%=service._id%>/bookings/newBooking" class="btn btn-primary">Book Service</a>
+            </div> -->
+            <% if(currentUser && service.author.equals(currentUser._id)){ %>
+            <div class="card-body">
+              <a href="/services/<%=service._id%>/editService" class="btn btn-warning">Edit</a>
+              <form class="d-inline" action="/services/<%=service._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            </div>
+            <% }%>
+            <div>
+              <a href="/services" class="card-link">All Services</a>
+            </div>
+          </div>
+          
+    
+    </div>
+    <div class="col-6">
+      <form action="/services/<%=service._id%>/bookings" method="POST" class="mb-3 validated-form" novalidate>
+        <div class="mb-3">
+          <%if(currentUser){ %>
+            <h3>Book this service</h3>
+            <!-- <label for="rating" class="form-label">Rating</label>
+            <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating"> -->
+            <!-- <fieldset class="starability-heart inline"> -->
+                <!-- <legend>First rating:</legend> -->
+                <!-- <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." /> -->
+                <!-- <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset> -->
+        </div>
+        
+        <div class="mb-3">
+            <label for="fullname" class="form-label">Name and Lastname</label>
+            <input class="form-control" type="text" id="fullname" name="booking[fullname]" required>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <input class="form-control" type="text" id="address" name="booking[address]" required>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input class="form-control" type="date" id="date" name="booking[date]" required>
+        
+    </div>
+        <button class="btn btn-success">Add Booking</button>
+    </form>
+    <h3>Bookings</h3>
+    <%}%>
+    
+    <!-- for loop to scan the bookings elements -->
+    <% for(let booking of service.bookings) {%>
+      
+      <!-- condition to show just some -->
+      <% if((currentUser && booking.author.equals(currentUser._id)) || (currentUser && currentUser.role == 'admin')){ %>
+    
+    <div class="card mb-3">
+        <div class="mb-3 card-body">
+          
+          <p class="card-title">Name: <%= booking.fullname%></p>
+          <p class="card-subtitle mb-2 text-muted">by <%=booking.author.username %> </p>
+          <p class="card-text">Address: <%= booking.address%></p>
+          <p class="card-subtitle mb-2 text-muted">Date <%=booking.date %> </p>
+          <p class="card-subtitle mb-2 text-muted">Status <%=booking.status %> </p>
+          <form action="/services/<%=service._id%>/bookings/<%=booking._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">Delete</button>  
+          </form> 
+         
+        </div> 
+    </div>
+    <% } %>
+    <%}%>
+    </div>
+    
+</div>
+
+
+
+
+<!-- <img src="/imgs/servImage.png">
+    <h1>Service name: <%= service.name %></h1>
+    <p> <%= service.description%></p>
+    <h5> PRICE: <%= service.price %> €</h5>
+
+    <a href="/services/<%=service._id%>/editService">Edit</a>
+    <form action="/services/<%=service._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+
+    <a href="/services">All Services</a> -->
+    

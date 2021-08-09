@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <h2>Invoice <%=booking._id%></h2>
+    <p> <b>Customer:</b> <%= booking.fullname%></p>
+<p> <b>Service Hired:</b> <%= booking.service%></p>
+<p> <b>Address:</b> <%= booking.address%></p>
+<p><b>Date:</b> <%=booking.date%></p>
+<p> <b>Status :</b> <%= booking.status%></p>
+<!-- <p>Price: <%= booking.price%> €</p> -->
+<h3>Total ..................................................................<%=booking.price%> €</h3>
+</body>
+</html>

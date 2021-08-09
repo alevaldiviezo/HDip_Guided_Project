@@ -1,0 +1,44 @@
+<%layout('/layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Edit Book Service</h1>
+    <div class="col-6 offset-3">
+        <form action="/bookings/<%=booking._id%>?_method=PUT" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="service">Service</label>
+                <input class="form-control" type="text" id="service" name="booking[service]" value="<%=booking.service%>" readonly> 
+            </div >
+            
+            <div class="mb-3">
+                <label class="form-label" for="fullname" >Customer</label>
+               
+                    <input type="text" class="form-control" id="fullname" value="<%=booking.fullname%>" name="booking[fullname]" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input class="form-control" type="text" id="address" value="<%=booking.address%>" name="booking[address]" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="date">Date</label>
+                <input class="form-control" id="date" value="<%=booking.date%>" name="booking[date]" readonly> 
+            </div>
+            <%if(currentUser.role =='admin'){%>
+            <div class="mb-3">
+                <label class="form-label" for="status">Status</label>
+                <input class="form-control" type="text" id="status" name="booking[status]" value="<%=booking.status%>" required> 
+            </div >
+            <%}%>
+            
+            
+
+            <div class="mb-3">
+                <button class="btn btn-success">Update</button>
+            </div>
+            
+            
+    
+        </form>
+        
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<%layout('/layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edit Service</h1>
+        <div class="col-6 offset-3">
+            <form action="/services/<%=service._id%>?_method=PUT" method="POST" class="validated-form" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    
+                    <input class="form-control" type="text" id="name" name="service[name]" value="<%= service.name %>" required> 
+                </div >
+                
+                <div class="mb-3">
+                    <label class="form-label" for="price" >Price</label>
+                    <div class="input-group">
+                        
+                        <span class="input-group-text" id="price-label">€</span>
+                        <input type="text" class="form-control" id="price" value="<%= service.price %>" aria-label="Price" aria-describedby="price-label" name="service[price]" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description or comments</label>
+                    <textarea class="form-control" type="text" id="description" name="service[description]" required><%=service.description%></textarea> 
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Update Service</button>
+                </div>
+                
+                
+        
+            </form>
+            <a href="/services/<%=service._id%>">back to service</a>
+        </div>
+    </div>
+    

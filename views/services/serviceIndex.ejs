@@ -1,0 +1,30 @@
+<%layout('/layouts/boilerplate')%>
+    <h1>Our Available Services</h1>
+    <% if(currentUser && currentUser.role == 'admin'){ %>
+    <div>
+        <a href="/services/newService">Add Service</a>
+    </div>
+    <% }%>
+    <ul>
+        <% for(let service of services){%>
+            
+            <!-- <a href="/services/<%=service._id%>"><li><%= service.name %></li></a> -->
+            <div class="card-mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" src="/imgs/serv.png" width="150">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-title"><%=service.name%></div>
+                        <p class="card-text"><%=service.description%></p>
+                        <p class="card-text">
+                            <small class="text-muted"> PRICE: <%= service.price%> €</small>
+                        </p>
+                        <a class="btn btn-primary" href="/services/<%=service._id%>">View Service</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <% } %>
+    </ul>
+    

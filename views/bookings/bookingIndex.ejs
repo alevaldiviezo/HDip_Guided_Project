@@ -1,0 +1,32 @@
+<%layout('/layouts/boilerplate')%>
+
+<h1>My Bookings</h1>
+<p> Here you can see all your bookings</p>
+<% for(let booking of bookings){%>
+            
+    <% if((currentUser && booking.author.equals(currentUser._id)) || (currentUser && currentUser.role == 'admin')){ %>
+    <div class="card-mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-fluid" src="/imgs/servImage.png" width="150">
+            </div>
+            <div class="col-md-8">
+                <div class="card-title">Customer: <%=booking.fullname%></div>
+                <p class="card-text">Service: <%=booking.service%></p>
+                <p class="card-text"> Address: <%=booking.address%></p>
+                <p class="card-text"> Status: <%=booking.status%></p>
+                <p class="card-text">
+                    <small class="text-muted"> PRICE: <%= booking.price%></small>
+                </p>
+                
+            </div>
+            <div>
+                <form action="/bookings/<%=booking._id%>">
+                    <button class="btn btn-warning">View Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <%}%>
+<% } %>

@@ -1,0 +1,18 @@
+<%layout('/layouts/boilerplate')%>
+
+<!-- <p>Booked by <%=currentUser.username%></p> -->
+<p> Customer: <%= booking.fullname%></p>
+<p> Service Hired: <%= booking.service%></p>
+<p> Address: <%= booking.address%></p>
+<p>Date: <%=booking.date%></p>
+<p> Status : <%= booking.status%></p>
+<form action="/bookings/<%=booking._id%>/bookingEdit">
+    <button class="btn btn-warning">Edit Booking</button>
+    
+</form>
+<% if(currentUser && currentUser.role == 'admin'){%>
+<form action="/bookings/<%=booking._id%>/generateReport">
+    <button class="btn btn-danger">Generate Report</button>
+    
+</form>
+<% }%>
