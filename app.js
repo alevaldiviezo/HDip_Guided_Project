@@ -117,6 +117,7 @@ app.use((err, req, res, next) => {  // message when we dont find something in th
 })
 
 //Port to be used
-app.listen(4000, () => {
-    console.log("Server started at 4000!");
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+    console.log(`Server started at ${port}!`);
 })
