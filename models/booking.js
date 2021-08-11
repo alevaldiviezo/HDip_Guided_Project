@@ -7,6 +7,7 @@ const bookingSchema = new Schema({
     service: String,
     fullname: String,
     address : String,
+    phone: Number,
     date: Date,
     price: Number,
     created: {

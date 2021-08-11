@@ -20,6 +20,7 @@ module.exports.bookingSchema = Joi.object({
         service: Joi.string(),
         fullname : Joi.string().required(),
         address: Joi.string().required(),
+        phone: Joi.number().required(),
         date:Joi.date().min('now').required(),
         status: Joi.string()
     }).required()

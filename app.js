@@ -31,7 +31,7 @@ const { findById } = require('./models/user');
 
 
 //Conecction to DB
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/laundry-services2';
+const dbUrl = 'mongodb://localhost:27017/laundry-services2' || process.env.DB_URL; //Depends on the environment variables, the DB will connect locally or in the cloud
 
 // mongodb://localhost:27017/laundry-services2
 mongoose.connect(dbUrl, {
@@ -76,7 +76,7 @@ app.use(flash());
 // from the passport documentation the recommended usage is after sessionConfig
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate())); //Method from passport-local-strategy
+passport.use(new LocalStrategy(User.authenticate())); //Method from passport-local
 
 passport.serializeUser(User.serializeUser()); //Store a user in the session
 passport.deserializeUser(User.deserializeUser()); // Delete a user in the session
