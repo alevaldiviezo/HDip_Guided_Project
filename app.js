@@ -31,7 +31,7 @@ const { findById } = require('./models/user');
 
 
 //Conecction to DB
-const dbUrl = 'mongodb://localhost:27017/laundry-services2' || process.env.DB_URL; //Depends on the environment variables, the DB will connect locally or in the cloud
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/laundry-services2'; //Depends on the environment variables, the DB will connect locally or in the cloud
 
 // mongodb://localhost:27017/laundry-services2
 mongoose.connect(dbUrl, {
