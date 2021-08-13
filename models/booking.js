@@ -1,9 +1,11 @@
+// Libraries required
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// New schema saved in bookingSchema
 const bookingSchema = new Schema({
-    // body: String,
-    // rating: Number,
+
+    // Fields required to create a booking
     service: String,
     fullname: String,
     address : String,
@@ -26,4 +28,4 @@ const bookingSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('Booking', bookingSchema);
+module.exports = mongoose.model('Booking', bookingSchema); // Export the model as Booking

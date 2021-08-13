@@ -28,7 +28,7 @@ const ServiceSchema = new Schema({
     
 });
 
-//We use findOneAndDelete method to delete a service, so we need to the following middleware to delete any other document related to the service, in this case the reviews
+//We use findOneAndDelete method to delete a service, so we need to the following middleware to delete any other document related to the service, in this case the bookings
 
 ServiceSchema.post('findOneAndDelete', async function(doc){
     if(doc){

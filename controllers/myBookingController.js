@@ -3,23 +3,27 @@ const ejs = require('ejs');
 const pdf = require('html-pdf');
 const path = require('path');
 
+//See all the bookings in my boobings page
 module.exports.mybookingIndex = async(req,res) => {
     const bookings = await Booking.find({});
     res.render('bookings/bookingIndex', {bookings});
 };
 
+//Show the booking
 module.exports.showBooking = async(req,res) => {
     const {bookingId} = req.params;
     const booking = await Booking.findById(bookingId);
     res.render('bookings/bookingShow', {booking});
 };
 
+//Access to a form for editing a booking
 module.exports.editBooking = async(req, res) => {
     const {bookingId} = req.params;
     const booking = await Booking.findById(bookingId);
     res.render('bookings/bookingEdit', {booking});
 };
 
+// Method to generate the invoice
 module.exports.generateReport = async(req, res) => {
     const {bookingId} = req.params;
     const booking = await Booking.findById(bookingId);
@@ -47,6 +51,8 @@ module.exports.generateReport = async(req, res) => {
     }
 })
 };
+
+// Update the booking in the DB
 
 module.exports.updateBooking = async(req,res) => {
     const {bookingId} = req.params;

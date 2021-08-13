@@ -2,10 +2,12 @@
 const passport = require('passport');
 const User = require('../models/user');
 
+//Access to register form
 module.exports.registerUser = (req, res) => {
     res.render('users/userRegister');
 };
 
+//Create a user in the DB
 module.exports.createUser = async(req, res) => {
     try{
         const {email, username, password} = req.body;
@@ -24,10 +26,12 @@ module.exports.createUser = async(req, res) => {
     
 };
 
+//Access to login form
 module.exports.loginForm = (req, res) => {
     res.render('users/userLogin');
 };
 
+//Authenticate user
 module.exports.loginUser = (req, res) => {
     req.flash('success', 'Welcome Back!');
     const redirectUrl = req.session.returnTo || '/services';  //we use this variable to redirect the user to a page that wanted to access before login
@@ -35,6 +39,7 @@ module.exports.loginUser = (req, res) => {
     res.redirect(redirectUrl);
 };
 
+//Logout user
 module.exports.logoutUser = (req, res) => {
     req.logout();
     req.flash('success', 'We`ll miss you ;(')

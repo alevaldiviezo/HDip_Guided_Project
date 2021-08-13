@@ -1,6 +1,8 @@
 const Booking = require('../models/booking');
 const Service = require('../models/service');
 
+// Method to create a booking
+
 module.exports.createBooking = async(req, res) => {
     const service = await Service.findById(req.params.id);
     const booking = new Booking(req.body.booking);
@@ -13,6 +15,8 @@ module.exports.createBooking = async(req, res) => {
     req.flash('success', 'Booking created successfully!')
     res.redirect(`/services/${service._id}`);
 };
+
+// Method to delete a booking
 
 module.exports.deleteBooking = async(req, res) => {
     const {id, bookingId} = req.params;

@@ -2,6 +2,7 @@ if(process.env.NODE_ENV !== "production"){  // Enviroment variables to handle de
     require('dotenv').config();
 }
 
+// Requiring all the libraries that we need
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -15,6 +16,7 @@ const LocalStrategy = require('passport-local');
 const ejs = require('ejs');
 const pdf = require('html-pdf');
 
+// Requiring all the files we create and need in this file
 const serviceRoutes = require('./routes/serviceRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -49,7 +51,7 @@ db.once("open", () => {
 
 
 
-const app = express();
+const app = express(); // variable app
 
 //App configuration
 app.engine('ejs', ejsMate);
